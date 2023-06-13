@@ -1,0 +1,33 @@
+.fullContainer{
+    width:90%;
+    margin: 20px auto;
+    height:30vh;
+    @media screen and (max-width:420px){
+        display:none;
+    }
+
+    & h2{
+        color: var(--gray);
+        font-size: 22px;
+        font-weight:400;
+    }
+
+    & .imgHolder{
+        width:20%;
+        margin-right:10px;
+        position: relative;
+
+        & img{
+            width:240px;
+            height:150px;
+            cursor: pointer;
+        }
+        & .icon{
+            position:absolute;
+            bottom:5px;
+            left:5px;
+            color: var(--white);
+            font-size:40px;
+        }
+    }
+}
