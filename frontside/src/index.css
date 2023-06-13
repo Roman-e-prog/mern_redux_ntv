@@ -1,0 +1,30 @@
+*{
+  font-size:100%;
+  font-family: 'Roboto', sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+:root{
+  --blue: #03182e;
+  --red: #ca0b0b;
+  --gray: rgb(104, 99, 99);
+  --lightgray: rgb(121, 112, 112);
+  --lightblue: #b6bfe7;
+  --fontColor: rgb(26, 23, 23);
+  --white: rgb(245, 241, 241);
+}
+html{
+  background: var(--lightblue);
+}
+ul{
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.link{
+  text-decoration: none;
+}
+.error{
+  color:var(--red);
+}
