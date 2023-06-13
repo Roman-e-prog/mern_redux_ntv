@@ -10,7 +10,8 @@
 
 # production
 /build
-
+# img
+frontside/public/uploads/*
 # misc
 .DS_Store
 .env.local
