@@ -18,13 +18,23 @@ All code was developed by me, and I used only a few libraries to gain a deep und
     For the Part "Bilderserien" I have build only one example.
 
 # structure
+
 -At the top a navbar, with full screen dropdownmenue and a search that opens on a single page.
+
 -Top bar with stock market data and weather data.(Hardcoded data, stock market data comes from the database)
+
 -Live ticker for Ukraine news - displays only the last entry. All entries are found by clicking the link.
+
 -One section with news (two different styles)and one section for videos. Clicking the entrys opens the indivual Article. All clicks are counted and sort the component "Meist gelesen" or "Meist gesehen" on the homepage.
 For all news there is an evaluation component, that is used to sort the articles in "Das Beste" on the homepage.
+
 -A chart with corona data using react-charts librarie.(Hardcoded data);
+
 -"Bilderserie" The component is a link that leads to a fullscreen slider.
 -"Meist gesehen" sorts videos like described above.
+
 -Advertise component with two different styled advertises.
+
+-Acordeon with services
+
 -Footer.
