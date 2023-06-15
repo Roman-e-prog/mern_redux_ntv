@@ -164,7 +164,7 @@ console.log(form.current);
                 </FormGroup>
                 <FormGroup>
                     <label htmlFor='to_mail'>E-Mail</label>
-                    <input type="email" name="to_mail" id="mail" defaultValue={mail} title="email"/>
+                    <input type="text" name="to_mail" id="mail" defaultValue={mail.join(", ")} title="email"/>
                 </FormGroup>
                 <ButtonWrapper>
                     <SendButton title="Absenden">Absenden</SendButton>
