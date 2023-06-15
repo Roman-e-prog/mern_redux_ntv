@@ -125,6 +125,13 @@ const Videos = () => {
     title:"",
   })
   const {ressort,theme,title} = formdata;
+    //validation
+    const [formerror, setFormerror] = useState({
+      src:"",
+      ressort:"",
+      theme:"",
+      title:"",
+  })
 
   const [filedata, setFiledata] = useState({
     src:""
@@ -145,6 +152,29 @@ const Videos = () => {
   }
   const onSubmit = (e)=>{
     e.preventDefault();
+    let errors = {...formerror};
+    if(filedata.src === ""){
+     errors.src = "Sie müssen ein Video hochladen"
+    } else{
+      errors.src = "";
+    }
+    if(formdata.ressort === ""){
+      errors.ressort = "Bitte geben Sie das Ressort ein"
+    } else{
+      errors.ressort = "";
+    }
+    if(formdata.title === ""){
+      errors.title = "Bitte geben Sie den Titel ein"
+    } else{
+      errors.title = "";
+    }
+    if(formdata.theme === ""){
+      errors.theme = "Bitte geben Sie das Thema ein"
+    } else{
+      errors.theme = "";
+    }
+    
+    if(Object.values(errors).every(x=>x === "")){
    const videosData = new FormData();
    videosData.append("ressort", formdata.ressort);
    videosData.append("theme", formdata.theme);
@@ -153,6 +183,10 @@ const Videos = () => {
     dispatch(createVideos(videosData));
     dispatch(getAllVideos());
   }
+   else{
+  return setFormerror(errors);
+  }
+}
   const handleDelete = async (id)=>{
    await dispatch(deleteVideos(id))
     dispatch(getAllVideos());
@@ -190,18 +224,30 @@ const Videos = () => {
                 <CrudInput type="file" name="src" id={`${uniqueId} src`}  
                 style={{background:"var(--blue)", color:"var(--white)"}}
                 ref={fileInput} onChange={fileChange}/>
+                  <div className='error'>
+               {formerror.src && <span>{formerror.src}</span>}
+            </div>
             </FormGroup>
             <FormGroup>
                 <CrudLabel htmlFor={`${uniqueId} ressort`}>Ressortzuordnung</CrudLabel>
                 <CrudInput type="text" name="ressort" id={`${uniqueId} ressort`} value={ressort} onChange={(e)=>handleChange(e)}/>
+                  <div className='error'>
+                {formerror.ressort && <span>{formerror.ressort}</span>}
+              </div>
             </FormGroup>
             <FormGroup>
                 <CrudLabel htmlFor={`${uniqueId} theme`}>Thema</CrudLabel>
                 <CrudInput type="text" name="theme" id={`${uniqueId} theme`} value={theme} onChange={(e)=>handleChange(e)}/>
+                  <div className='error'>
+                {formerror.theme && <span>{formerror.theme}</span>}
+              </div>
             </FormGroup>
             <FormGroup>
                 <CrudLabel htmlFor={`${uniqueId} title`}>Titel</CrudLabel>
                 <CrudInput type="text" name="title" id={`${uniqueId} title`} value={title} onChange={(e)=>handleChange(e)}/>
+                <div className='error'>
+               {formerror.title && <span>{formerror.title}</span>}
+            </div>
             </FormGroup>
                 <DataButtonHolder>
                   <DataSendButton onClick={onSubmit}>Absenden</DataSendButton>

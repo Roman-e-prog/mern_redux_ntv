@@ -107,7 +107,9 @@ const UserComments = () => {
             userAnswer,
         }
         dispatch(createUserLetter(UserLetterData))
-        dispatch(reset())
+        return ()=>{
+            dispatch(reset())
+        }
     }
   return (
     <Container>

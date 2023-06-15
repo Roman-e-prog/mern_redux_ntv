@@ -156,15 +156,15 @@ const ImgSeries = () => {
   const onSubmit = (e)=>{
     e.preventDefault();
     let errors = {...formerror};
-    if(filedata.img === null){
+    if(filedata.img === ""){
      errors.img = "Sie müssen ein Bild eingeben"
     } else{
       errors.img = "";
     }
     if(formdata.alt === ""){
-      errors.theme = "Bitte geben Sie die Bildbeschreibung ein"
+      errors.alt = "Bitte geben Sie die Bildbeschreibung ein"
     } else{
-      errors.theme = "";
+      errors.alt = "";
     }
     if(formdata.title === ""){
       errors.title = "Bitte geben Sie den Titel ein"

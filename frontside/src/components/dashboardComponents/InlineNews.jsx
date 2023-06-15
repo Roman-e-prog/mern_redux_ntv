@@ -157,18 +157,17 @@ const InlineNews = () => {
   const [preview, setPreview] = useState(false);
   const {img} = filedata;
   const fileInput = useRef(img);
- const fileChange = ()=>{
-  const file = fileInput.current.files[0];
-    setFiledata(file);
-    handlePreview(file);
- }
+  const fileChange = (e)=>{
+    const file = fileInput.current.files[0];
+      setFiledata(file); 
+    handlePreview(file)
+  }
  const handlePreview = (file)=>{
   const reader = new FileReader();
   reader.readAsDataURL(file);
   reader.onloadend = ()=>{
       setPreview(reader.result);
     }
-  
  }
   const handleChange = (e)=>{
     setFormdata((prevState)=>({
@@ -179,11 +178,11 @@ const InlineNews = () => {
   const onSubmit = (e)=>{
     e.preventDefault();
     let errors = {...formerror};
-    if(filedata.img === null){
-     errors.img = "Sie müssen ein Bild eingeben"
-    } else{
-      errors.img = "";
-    }
+       if(filedata.img === ""){
+        errors.img = "Sie müssen ein Bild eingeben"
+       } else{
+         errors.img = "";
+       }
     if(formdata.ressort === ""){
       errors.ressort = "Bitte geben Sie das Ressort ein"
     } else{
@@ -204,6 +203,7 @@ const InlineNews = () => {
     } else{
       errors.content = "";
     }
+    console.log(errors);
     if(Object.values(errors).every(x=>x === "")){
    const inlineNewsData = new FormData();
    inlineNewsData.append("ressort", formdata.ressort);
@@ -256,9 +256,9 @@ const InlineNews = () => {
                 <CrudInput type="file" name="img" id={`${uniqueId} img`}   
                 style={{background:"var(--blue)", color:"var(--white)"}}
                 ref={fileInput} onChange={fileChange}/>
-            <div className='error'>
-               {formerror.img && <span>{formerror.img}</span>}
-            </div>
+                <div className='error'>
+                  {formerror.img && <span>{formerror.img}</span>}
+                </div>
             </InputHolder>
             {preview && <img src={preview} alt={preview} title={preview} style={{width:"300px", height:"200px"}}/>}
             <InputHolder>
@@ -282,12 +282,20 @@ const InlineNews = () => {
                {formerror.title && <span>{formerror.title}</span>}
             </div>
             </InputHolder>
-            <CrudTextarea cols="50" rows="10" name="content" id={`${uniqueId} content`} placeholder="Inhalt" value={content} onChange={(e)=>handleChange(e)}></CrudTextarea>
-            <div className='error'>
-               {formerror.content && <span>{formerror.content}</span>}
-            </div>
+            <InputHolder>
+              <CrudTextarea cols="50" 
+              rows="10" 
+              name="content" 
+              id={`${uniqueId} content`} 
+              placeholder="Inhalt" 
+              value={content} 
+              onChange={(e)=>handleChange(e)}></CrudTextarea>
+              <div className='error'>
+                {formerror.content && <span>{formerror.content}</span>}
+              </div>
+            </InputHolder>
                 <DataButtonHolder>
-                  <DataSendButton type="submit">Absenden</DataSendButton>
+                  <DataSendButton onClick={onSubmit}>Absenden</DataSendButton>
                   </DataButtonHolder>
             </CrudForm>
     </Container>

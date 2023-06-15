@@ -196,6 +196,7 @@ const DropdownProgramm = () => {
       };
     });
   }
+  
     const handleVideoChange = (index, e)=>{
       setFormdata((prevState)=>{
         const videos = [...prevState.videos];
@@ -219,17 +220,22 @@ const DropdownProgramm = () => {
     const onSubmit = async (e)=>{
       e.preventDefault();
       let errors = {...formerror};
-      if(filedata.iframe === null){
+      if (formdata.lis.length === 0) {
+        errors.lis = "Bitte geben Sie die Menüpunkte ein";
+      } else {
+        errors.lis = "";
+      }
+      if(filedata.iframe[0] === undefined){
        errors.iframe0 = "Sie müssen ein Video eingeben"
       } else{
         errors.iframe0 = "";
       }
-      if(filedata.iframe === null){
+      if(filedata.iframe[1] === undefined){
         errors.iframe1 = "Sie müssen ein Video eingeben"
        } else{
          errors.iframe1 = "";
        }
-       if(filedata.iframe === null){
+      if(filedata.iframe[2] === undefined){
         errors.iframe2 = "Sie müssen ein Video eingeben"
        } else{
          errors.iframe2 = "";
@@ -279,11 +285,12 @@ const DropdownProgramm = () => {
       } else{
         errors.theme2 = "";
       }
-      if(formdata.themen === ""){
-        errors.themen = "Bitte geben Sie den Inhalt ein"
-      } else{
+      if (formdata.themen.length === 0) {
+        errors.themen = "Bitte geben Sie die Themen ein";
+      } else {
         errors.themen = "";
       }
+      console.log(errors)
       if(Object.values(errors).every(x=>x === "")){
       const dropdownProgrammData = new FormData();
       dropdownProgrammData.append("lis",JSON.stringify(formdata.lis));
@@ -382,7 +389,7 @@ const DropdownProgramm = () => {
                           <Label htmlFor={`${uniqueId} iframe1`}>Videos</Label>
                           <Input type="file" name="iframe1" id={`${uniqueId} iframe1`} onChange={(e)=>handleFileChange(1,e)}/>
                           <div className='error'>
-                        {formerror.iframe1 ? <span>{formerror.iframe1}</span> : null}
+                        {formerror.iframe1 ?<span>{formerror.iframe1}</span> : null}
                       </div>
                       </FormGroup>
                       <FormGroup>
@@ -445,7 +452,7 @@ const DropdownProgramm = () => {
                       </div>
                         </FormGroup>
                         <DataButtonHolder>
-                            <DataSendButton type="submit">Absenden</DataSendButton>
+                            <DataSendButton onClick={onSubmit}>Absenden</DataSendButton>
                         </DataButtonHolder>
                     </Form>
     </Container>

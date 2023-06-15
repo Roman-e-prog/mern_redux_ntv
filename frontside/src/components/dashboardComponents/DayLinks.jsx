@@ -176,7 +176,7 @@ const DayLinks = () => {
   const onSubmit = (e)=>{
     e.preventDefault();
     let errors = {...formerror};
-    if(filedata.img === null){
+    if(filedata.img === ""){
      errors.img = "Sie müssen ein Bild eingeben"
     } else{
       errors.img = "";
@@ -251,7 +251,7 @@ const handleDelete = async (id)=>{
                 ref={fileInput}
                 onChange={fileChange}/>
                   <div className='error'>
-               {formerror.img && <span>{formerror.img}</span>}
+               {formerror.img ? <span>{formerror.img}</span> : null}
             </div>
             </FormGroup>
             {preview && <img src={preview} alt={preview} title={preview} style={{width:"300px", height:"200px"}}/>}

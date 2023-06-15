@@ -183,7 +183,7 @@ const InlineAdvertises = () => {
   const onSubmit = (e)=>{
     e.preventDefault();
     let errors = {...formerror};
-    if(fileData.img === null){
+    if(fileData.img === ""){
      errors.img = "Sie müssen ein Bild eingeben"
     } else{
       errors.img = "";

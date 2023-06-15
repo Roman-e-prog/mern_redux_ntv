@@ -218,17 +218,22 @@ const DropdownVideo = () => {
     const onSubmit = async (e)=>{
       e.preventDefault();
       let errors = {...formerror};
-      if(filedata.iframe === null){
+      if (formdata.lis.length === 0) {
+        errors.lis = "Bitte geben Sie die Menüpunkte ein";
+      } else {
+        errors.lis = "";
+      }
+      if(filedata.iframe[0] === undefined){
        errors.iframe0 = "Sie müssen ein Video eingeben"
       } else{
         errors.iframe0 = "";
       }
-      if(filedata.iframe === null){
+      if(filedata.iframe[1] === undefined){
         errors.iframe1 = "Sie müssen ein Video eingeben"
        } else{
          errors.iframe1 = "";
        }
-       if(filedata.iframe === null){
+      if(filedata.iframe[2] === undefined){
         errors.iframe2 = "Sie müssen ein Video eingeben"
        } else{
          errors.iframe2 = "";
@@ -278,9 +283,9 @@ const DropdownVideo = () => {
       } else{
         errors.theme2 = "";
       }
-      if(formdata.themen === ""){
-        errors.themen = "Bitte geben Sie den Inhalt ein"
-      } else{
+      if (formdata.themen.length === 0) {
+        errors.themen = "Bitte geben Sie die Themen ein";
+      } else {
         errors.themen = "";
       }
       if(Object.values(errors).every(x=>x === "")){

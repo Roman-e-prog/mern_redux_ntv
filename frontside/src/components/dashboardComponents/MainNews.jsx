@@ -188,7 +188,7 @@ const MainNews = () => {
   const onSubmit = (e)=>{
     e.preventDefault();
     let errors = {...formerror};
-    if(fileData.img === null){
+    if(fileData.img === ""){
      errors.img = "Sie müssen ein Bild eingeben"
     } else{
       errors.img = "";
@@ -266,9 +266,9 @@ const MainNews = () => {
                 style={{background:"var(--blue)", color:"var(--white)"}}
                 accept=".jpeg, .png"
               ref={fileInput} onChange={fileChange}/>
-               <div className='error'>
-               {formerror.img && <span>{formerror.img}</span>}
-            </div>
+                <div className='error'>
+                {formerror.img && <span>{formerror.img}</span>}
+              </div>
             </InputHolder>
             {
               preview && <img src={preview} alt={preview} title={preview} style={{height:"200px"}}/>
@@ -294,10 +294,18 @@ const MainNews = () => {
                 {formerror.title ? <span>{formerror.title}</span> : null}
             </div>
             </InputHolder>
-            <CrudTextarea placeholder="Inhalt" cols="50" rows="10" name="content" value={content} onChange={(e)=>handleChange(e)}></CrudTextarea>
-            <div className='error'>
-                {formerror.content ? <span>{formerror.content}</span> : null}
-            </div>
+            <InputHolder>
+              <CrudTextarea placeholder="Inhalt" 
+              cols="50" 
+              rows="10" 
+              name="content" 
+              value={content} 
+              onChange={(e)=>handleChange(e)}>
+              </CrudTextarea>
+              <div className='error'>
+                  {formerror.content ? <span>{formerror.content}</span> : null}
+              </div>
+            </InputHolder>
                 <DataButtonHolder>
                   <DataSendButton type="submit">Absenden</DataSendButton>
                 </DataButtonHolder>
