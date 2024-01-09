@@ -154,7 +154,7 @@ const InlineNews = () => {
   const [filedata, setFiledata] = useState({
     img:""
   })
-  const [preview, setPreview] = useState(false);
+  const [preview, setPreview] = useState("");
   const {img} = filedata;
   const fileInput = useRef(img);
   const fileChange = (e)=>{

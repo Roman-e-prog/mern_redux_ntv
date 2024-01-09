@@ -133,7 +133,7 @@ const ImgSeries = () => {
   const {img} = filedata;
   const fileInput = useRef(img);
 
-  const [preview, setPreview] = useState(false);
+  const [preview, setPreview] = useState("");
 
   const fileChange = ()=>{
     const file = fileInput.current.files[0];
