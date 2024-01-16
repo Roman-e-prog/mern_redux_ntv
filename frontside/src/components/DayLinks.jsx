@@ -48,6 +48,7 @@ const DayLinks = () => {
     useEffect(()=>{
         dispatch(getAllDayLinks());
     }, [dispatch]);
+    console.log(dayLinks)
   return <Container>
         {dayLinks.map((item)=>(
             <Link to={{pathname: `/${item.ident}`}} className="link" key={item.ident}>

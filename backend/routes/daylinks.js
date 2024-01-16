@@ -29,6 +29,7 @@ router.post("/", upload.single("img") ,verifyTokenAndAdmin, async (req,res)=>{
 });
 //update
 router.put("/:id", upload.single("img"), verifyTokenAndAdmin, async (req,res)=>{
+    console.log('I am triggered')
     let fileUrl = req.file?.path.replace(/\\/g, "/");
     try{
         let updatedDayLinks = await Daylinks.findById(req.params.id);
@@ -57,6 +58,7 @@ router.put("/:id", upload.single("img"), verifyTokenAndAdmin, async (req,res)=>{
 
         res.status(200).json(updatedDayLinks);
     } catch(error){
+        console.log(error)
         res.status(404)
         throw new Error("Nicht gefunden");
     }

@@ -42,7 +42,6 @@ const getAdvertise = async (advertiseId)=>{
 const getAllAdvertise = async ()=>{
    const fetchAllUrl = "find/"
     const response = await axios.get(API_URL + fetchAllUrl);
-    console.log(response.data)
     return response.data;
 }
 //increment
